@@ -1,15 +1,25 @@
-import { useFruits } from '../hooks/useFruits.ts'
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import { AppProvider } from './AppProvider';
+import { Stack } from '@mui/material';
+import { Outlet } from 'react-router-dom';
+import NavBar from './NavBar';
 
 function App() {
-  const { data } = useFruits()
-
   return (
-    <>
-      <div className="app">
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <ul>{data && data.map((fruit) => <li key={fruit}>{fruit}</li>)}</ul>
-      </div>
-    </>
+    <AppProvider>
+      <Stack
+        sx={{
+          backgroundColor: 'background.default',
+          height: '100vh',
+        }}
+      >
+        <NavBar />
+        <Outlet />
+      </Stack>
+    </AppProvider>
   )
 }
 
